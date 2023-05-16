@@ -18,7 +18,7 @@ Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 
 
 */
-
+let score = 1;
 
 
 const posts = [
@@ -61,7 +61,7 @@ const posts = [
         "media": "https://unsplash.it/600/400?image=24",
         "author": {
             "name": "Luca Formicola",
-            "image": null
+            "image": "https://unsplash.it/300/300?image=20"  //da togliere e mettere null
         },
         "likes": 56,
         "created": "2021-04-03"
@@ -92,7 +92,7 @@ const square = document.getElementById('container');
 for (let i = 0; i < posts.length; i++){
 
     let thisPost = posts[i];
-    console.log(thisPost);
+    // console.log(thisPost);
 
 
 
@@ -121,7 +121,7 @@ for (let i = 0; i < posts.length; i++){
                </a>
            </div>
            <div class="likes__counter">
-               Piace a <b id="like-counter-1" class="js-likes-counter">${thisPost.likes}</b> persone
+               Piace a <b id="${thisPost.id}" class="js-likes-counter">${thisPost.likes}</b> persone
            </div>
        </div> 
    </div>            
@@ -129,16 +129,25 @@ for (let i = 0; i < posts.length; i++){
 
 
 
+
+const buttonLike = document.querySelectorAll('.like-button');
+
+for (let i = 0; i < buttonLike.length; i++) {
+
+    
+
+    buttonLike[i].addEventListener("click", function() {
+      if (buttonLike[i].classList.contains('like-button--liked')) {
+        buttonLike[i].classList.remove('like-button--liked');
+    
+      } else {
+        buttonLike[i].classList.add('like-button--liked');
+     
+      }
+    });
+  }
+
 }
 
 
 
-const buttonLike = document.querySelectorAll('.like-button');
-// console.log(buttonLike);
-
-buttonLike.addEventListener("click", 
-function() {
-
-    buttonLike.classList.add('like-button--liked');
-
-});
