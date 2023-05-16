@@ -18,7 +18,7 @@ Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 
 
 */
-let score = 1;
+
 
 
 const posts = [
@@ -87,8 +87,6 @@ const square = document.getElementById('container');
 
 
 
-
-
 for (let i = 0; i < posts.length; i++){
 
     let thisPost = posts[i];
@@ -121,7 +119,7 @@ for (let i = 0; i < posts.length; i++){
                </a>
            </div>
            <div class="likes__counter">
-               Piace a <b id="${thisPost.id}" class="js-likes-counter">${thisPost.likes}</b> persone
+               Piace a <b id="counter_${thisPost.id}" class="js-likes-counter">${thisPost.likes}</b> persone
            </div>
        </div> 
    </div>            
@@ -130,24 +128,39 @@ for (let i = 0; i < posts.length; i++){
 
 
 
+}
+
+
+
 const buttonLike = document.querySelectorAll('.like-button');
+
+let likedPosts = [];
 
 for (let i = 0; i < buttonLike.length; i++) {
 
-    
+  const postFinal = posts[i];
+
+  const likesCounter = document.getElementById(`counter_${postFinal.id}`);
+
+  console.log(postFinal.likes);
 
     buttonLike[i].addEventListener("click", function() {
       if (buttonLike[i].classList.contains('like-button--liked')) {
         buttonLike[i].classList.remove('like-button--liked');
-    
+        postFinal.likes--;
+        likedPosts = likedPosts.filter(postId => postId !== postFinal.id);
+       
       } else {
         buttonLike[i].classList.add('like-button--liked');
-     
+        postFinal.likes++;
+        likedPosts = [...likedPosts, postFinal.id];
+        
       }
+
+      likesCounter.innerHTML = postFinal.likes;
+
+
+      console.log(likedPosts);
     });
   }
-
-}
-
-
 
