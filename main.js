@@ -126,6 +126,19 @@ for (let i = 0; i < posts.length; i++){
        </div> 
    </div>            
 </div> `;
-   
+
+
 
 }
+
+
+
+const buttonLike = document.querySelectorAll('.like-button');
+// console.log(buttonLike);
+
+buttonLike.addEventListener("click", 
+function() {
+
+    buttonLike.classList.add('like-button--liked');
+
+});
